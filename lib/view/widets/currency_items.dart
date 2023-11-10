@@ -41,8 +41,8 @@ class _CryptoItemsWidgetState extends State<CryptoItemsWidget>
   List<Animation<Offset>> listAnimations = [];
   int itemLength = 0;
   void playAnimation() {
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 5));
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1500));
     itemLength = controller.coinItems.isEmpty ? 5 : controller.coinItems.length;
     listAnimations = List.generate(
       itemLength,
@@ -158,7 +158,6 @@ class CurrencyCardWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     CoinModel item = controller.coinItems.first;
-    bool isGreen = Constants.getMovementStatus(item.quote.usd.percentChange24h);
     return Card(
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
@@ -231,10 +230,9 @@ class CurrencyCardWidget extends GetView<HomeController> {
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: CommonChartWidget(
-                spots:
-                    isGreen ? Constants.greenChartData : Constants.redChartData,
-                showGradient: isGreen,
+            child: const CommonChartWidget(
+                spots: Constants.greenChartData,
+                showGradient: true,
                 color: Constants.baseColor),
           ),
         ],

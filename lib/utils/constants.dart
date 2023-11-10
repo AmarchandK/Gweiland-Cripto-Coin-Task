@@ -24,8 +24,8 @@ class Constants {
     "X-CMC_PRO_API_KEY": Constants.appToken
   };
   static const List<FlSpot> greenChartData = [
-    FlSpot(0, 1),
-    FlSpot(2.6, 1.5),
+    FlSpot(0, 1.5),
+    FlSpot(2.6, 2.3),
     FlSpot(4.9, 5),
     FlSpot(6.8, 3.1),
     FlSpot(8, 4),
@@ -43,7 +43,7 @@ class Constants {
   ];
   static void errorHandler(Object e) {
     if (e is DioException) {
-      if (e.response!.data["status"] == false) {
+      if (e.response?.data["status"] == false) {
         showDialogue(e.response!.data["message"]);
       } else if (e.response?.statusCode == 401) {
         showDialogue(e.response!.data["message"]);
@@ -73,7 +73,7 @@ class Constants {
                   color: Colors.white, fontWeight: FontWeight.bold)),
           backgroundColor: color ?? redColor,
           icon: const Icon(CupertinoIcons.exclamationmark_shield),
-          duration: const Duration(seconds: 3),
+          duration: const Duration(milliseconds: 1800),
           barBlur: 10,
           dismissDirection: DismissDirection.horizontal,
           overlayBlur: 1,
